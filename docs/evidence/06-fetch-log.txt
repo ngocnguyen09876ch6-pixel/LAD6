@@ -1,0 +1,9 @@
+PS D:\Lab5_Pipeline> python -m src.pipeline
+2026-10-11 14:01:07,930 | INFO | src.api_client | resource=orders page=1 rows=100 total_so_far=100
+2026-10-11 14:01:07,939 | INFO | src.api_client | resource=orders page=2 rows=100 total_so_far=200
+2026-10-11 14:01:07,948 | INFO | src.api_client | resource=orders page=3 rows=100 total_so_far=300
+2026-10-11 14:01:07,957 | INFO | src.api_client | resource=orders page=4 rows=100 total_so_far=400
+2026-10-11 14:01:07,991 | INFO | src.api_client | resource=orders page=5 rows=100 total_so_far=500
+2026-10-11 14:01:08,021 | INFO | src.api_client | resource=orders page=6 rows=100 total_so_far=600
+2026-10-11 14:01:08,030 | INFO | __main__ | RAW saved to D:\Lab5_Pipeline\data\raw\20261011_140107\orders.json
+2026-10-11 14:01:08,030 | INFO | __main__ | Fetched resource=orders rows=600 pages=6 run_id=20261011_14010

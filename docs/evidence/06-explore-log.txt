@@ -1,0 +1,92 @@
+-- heal check
+HTTP/1.1 200 OK
+date: Fri, 09 Oct 2026 13:40:50 GMT
+server: uvicorn
+content-length: 15
+content-type: application/json
+
+{"status":"ok"}
+
+---sai api key
+ Invalid Authentication 
+Request: GET /orders
+Header: X-API-Key: ******
+Actual Status: 401 Unauthorized
+Actual Response: {"detail":"Invalid API key"}
+Result: PASS
+
+--- ko gui api
+ Missing Authentication
+Request: GET /orders
+Header: X-API-Key (not sent)
+Actual Status: 401 Unauthorized
+Actual Response: {"detail":"Invalid API key"}
+Result: PASS
+
+ Pagination - Page 1
+Request: GET /orders?page=1&page_size=10
+Actual Status: 200 OK
+Actual page: 1
+Actual page_size: 10
+Actual total: 600
+Actual has_next: true
+Actual rows: 10
+Result: PASS
+
+ Pagination - Page 2
+Request: GET /orders?page=2&page_size=10
+Actual Status: 200 OK
+Actual page: 2
+Actual page_size: 10
+Actual total: 600
+Actual has_next: true
+Actual rows: 10
+Result: PASS
+
+Pagination - Default Page Size
+Request: GET /orders?page=1
+Actual Status: 200 OK
+Actual page: 1
+Actual page_size: 100
+Actual total: 600
+Actual has_next: true
+Actual rows: 100
+Result: PASS
+
+Pagination - Invalid Page
+Request: GET /orders?page=0&page_size=10
+Actual Status: 422 Unprocessable Entity
+Actual Error: page must be greater than or equal to 1
+Actual Input: page=0
+Result: PASS - invalid page rejected
+
+ Pagination - Invalid Page Size
+Request: GET /orders?page=1&page_size=0
+Actual Status: 422 Unprocessable Entity
+Actual Error: page_size must be greater than or equal to 1
+Actual Input: page_size=0
+Result: PASS - invalid page_size rejected
+
+ Pagination - Invalid Maximum Page Size
+Request: GET /orders?page=1&page_size=501
+Actual Status: 422 Unprocessable Entity
+Actual Error: page_size must be less than or equal to 500
+Actual Input: page_size=501
+Result: PASS - oversized page_size rejected
+
+ Filtering - Valid updated_after
+Request: GET /orders?page=1&page_size=10&updated_after=2026-07-01T12:00:00Z
+Actual Status: 200 OK
+Actual page: 1
+Actual page_size: 10
+Actual total: 234
+Actual has_next: true
+Actual rows: 10
+Result: PASS
+
+ Filtering - Invalid updated_after
+Request: GET /orders?page=1&page_size=10&updated_after=not-a-date
+Actual Status: 400 Bad Request
+Actual Response: {"detail":"updated_after must be ISO 8601"}
+Result: PASS - invalid timestamp rejected
+

@@ -1,6 +1,0 @@
-[ERROR] customers_daily.csv -> FileNotFoundError
-[ERROR] products_daily.csv -> FileNotFoundError
-[ERROR] orders_daily.csv -> FileNotFoundError
-[ERROR] order_items_daily.csv -> FileNotFoundError
-[ERROR] payments_daily.json -> FileNotFoundError
-[ERROR] missing.csv -> FileNotFoundError

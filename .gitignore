@@ -1,6 +1,13 @@
-# Chặn môi trường ảo và file biên dịch ngầm
 .venv/
 __pycache__/
-data/
+*.py[cod]
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+/data/
 logs/
+*.log
+
 .env

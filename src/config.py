@@ -9,8 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 @dataclass(frozen=True)
 class Settings:
     database_url: str = os.getenv("DATABASE_URL", "")
-    mock_api_url: str = os.getenv("API_URL", "")
-    mock_api_key: str = os.getenv("API_KEY", "")
+    api_url: str = os.getenv("MOCK_API_URL", "")
+    api_key: str = os.getenv("MOCK_API_KEY", "")
 
 
     raw_dir: Path = ROOT/"data"/"incremental"/"day_2026-07-01"
